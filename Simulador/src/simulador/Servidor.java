@@ -1,6 +1,12 @@
 package simulador;
 
 public class Servidor {
+	
+	private Fila fila;
+	
+	public void executarArquivo() {
+		
+	}
 
   public static void testeAleatorio() {
     // Colocando seed qualquer = teste = 1

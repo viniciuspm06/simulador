@@ -39,5 +39,16 @@ public class GeradorAleatorio {
     double taxa = -0.0002;
     return (long) Math.ceil((Math.log(1 - numeroAleatorio) / taxa));
   }
+  
+  
+  //função para gerar uma quantidade de arquivos aleatório por usuario
+  public int getQtdArquivoAleatorio() {
+	  
+	  double media = 15;
+	  double variancia = 5; 
+	  //qtde de arquivos enviados por usuario
+	  return (int) Math.ceil(media + rng.nextGaussian() * variancia);
+	  
+  }
 
 }

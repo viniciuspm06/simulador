@@ -1,23 +1,39 @@
 package simulador;
 
+import java.util.ArrayList;
+
 public class Arquivo {
 	
-	private int num_linhas;
-	private int tempo_servico;
+	private long numLinhas;
+	private int tempoServico;
 	
-	public int getNum_linhas() {
-		return num_linhas;
+	public long getNumLinhas() {
+		return numLinhas;
 	}
-	public void setNum_linhas(int num_linhas) {
-		this.num_linhas = num_linhas;
+	public void setNumLinhas(int num_linhas) {
+		this.numLinhas = num_linhas;
 	}
-	public int getTempo_servico() {
-		return tempo_servico;
+	public int getTempoServico() {
+		return tempoServico;
 	}
-	public void setTempo_servico(int tempo_servico) {
-		this.tempo_servico = tempo_servico;
+	public void setTempoServico(int tempo_servico) {
+		this.tempoServico = tempo_servico;
 	}
 	
-	
+	//funlçao que monta um array list simulando o upload de varios arquivos para o sistema
+	public static ArrayList<Arquivo> gerarArquivosUpload(int qtd) {
+		
+		ArrayList<Arquivo> arquivos = new ArrayList();
+		Arquivo a;
+		
+		for(int i = 0; i < qtd; i++) {
+			a = new Arquivo();
+			a.numLinhas = Simulador.ga.getLinhasAleatorio();
+			//adicionar tempo de serviço conforme num de linhas
+			arquivos.add(a);
+		}
+		
+		return arquivos;	
+	}
 	
 }
