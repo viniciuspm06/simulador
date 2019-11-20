@@ -6,6 +6,8 @@ public class Arquivo {
 
   private long numLinhas;
   private int tempoServico;
+  //private int tempoChegada;
+  //private int tempoEspera;
   private Usuario dono;
 
   public long getNumLinhas() {
@@ -36,7 +38,7 @@ public class Arquivo {
   // sistema
   public static ArrayList<Arquivo> gerarArquivosUpload(int qtd, GeradorAleatorio ga, Usuario dono) {
 
-    ArrayList<Arquivo> arquivos = new ArrayList();
+    ArrayList<Arquivo> arquivos = new ArrayList<Arquivo>();
     Arquivo a;
     // Tempo por linha (chute com base no dataset)
     double tempoPorLinha = 0.014;
