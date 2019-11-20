@@ -1,23 +1,13 @@
 package simulador;
 
-import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
-public class Fila {
-	
-	private ArrayList<Arquivo> arquivos;
+public abstract class Fila {
 
-	public ArrayList<Arquivo> getArquivos() {
-		return arquivos;
-	}
+  public abstract Arquivo consome() throws NoSuchElementException;
 
-	public void setArquivos(ArrayList<Arquivo> arquivos) {
-		this.arquivos = arquivos;
-	}
-	
-	public void addArquivo(Arquivo arquivo){
-		arquivos.add(arquivo);
-	}
-	
-	
-	
+  public abstract void adiciona(Arquivo arquivo);
+
+  public abstract boolean estaVazia();
+
 }
