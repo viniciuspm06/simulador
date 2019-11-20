@@ -3,37 +3,53 @@ package simulador;
 import java.util.ArrayList;
 
 public class Arquivo {
-	
-	private long numLinhas;
-	private int tempoServico;
-	
-	public long getNumLinhas() {
-		return numLinhas;
-	}
-	public void setNumLinhas(int num_linhas) {
-		this.numLinhas = num_linhas;
-	}
-	public int getTempoServico() {
-		return tempoServico;
-	}
-	public void setTempoServico(int tempo_servico) {
-		this.tempoServico = tempo_servico;
-	}
-	
-	//funlçao que monta um array list simulando o upload de varios arquivos para o sistema
-	public static ArrayList<Arquivo> gerarArquivosUpload(int qtd) {
-		
-		ArrayList<Arquivo> arquivos = new ArrayList();
-		Arquivo a;
-		
-		for(int i = 0; i < qtd; i++) {
-			a = new Arquivo();
-			a.numLinhas = Simulador.ga.getLinhasAleatorio();
-			//adicionar tempo de serviço conforme num de linhas
-			arquivos.add(a);
-		}
-		
-		return arquivos;	
-	}
-	
+
+  private long numLinhas;
+  private int tempoServico;
+  private Usuario dono;
+
+  public long getNumLinhas() {
+    return numLinhas;
+  }
+
+  public void setNumLinhas(long numLinhas) {
+    this.numLinhas = numLinhas;
+  }
+
+  public int getTempoServico() {
+    return tempoServico;
+  }
+
+  public void setTempoServico(int tempoServico) {
+    this.tempoServico = tempoServico;
+  }
+
+  public Usuario getDono() {
+    return this.dono;
+  }
+
+  public void setDono(Usuario dono) {
+    this.dono = dono;
+  }
+
+  // funlï¿½ao que monta um array list simulando o upload de varios arquivos para o
+  // sistema
+  public static ArrayList<Arquivo> gerarArquivosUpload(int qtd, GeradorAleatorio ga, Usuario dono) {
+
+    ArrayList<Arquivo> arquivos = new ArrayList();
+    Arquivo a;
+    // Tempo por linha (chute com base no dataset)
+    double tempoPorLinha = 0.014;
+    for (int i = 0; i < qtd; i++) {
+      long numLinhas = (long) ga.getLinhasAleatorio();
+      a = new Arquivo();
+      a.setDono(dono);
+      a.setNumLinhas(numLinhas);
+      a.setTempoServico((int) Math.ceil(numLinhas * tempoPorLinha));
+      arquivos.add(a);
+    }
+
+    return arquivos;
+  }
+
 }
