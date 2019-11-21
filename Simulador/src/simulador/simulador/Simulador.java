@@ -1,7 +1,6 @@
 package simulador;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class Simulador {
 
@@ -12,8 +11,15 @@ public class Simulador {
 
   public static void main(String args[]) {
 
+    int tipoFila = Fila.PRIORIDADE;
+
+    if (tipoFila == Fila.PRIORIDADE) {
+      fila = new FilaPrioridade();
+    } else {
+      fila = new FilaFIFO();
+    }
+
     ga = new GeradorAleatorio(System.currentTimeMillis());
-    fila = new FilaFIFO();
 
     try {
       int qtdReplicacoes = 1;
@@ -36,6 +42,7 @@ public class Simulador {
         ArrayList<Usuario> usuarios = criaUsuarios(qtdUsuarios);
         enfileraArquivos(usuarios);
         iniciaServidores(qtdServidores);
+        // Verificacao se o simulador terminou de rodar a replicação
         while (!fila.estaVazia() || !arquivosEnviados) {
           Thread.sleep(10);
         }
