@@ -7,7 +7,7 @@ public class Simulador {
   public static GeradorAleatorio ga;
   public static Fila fila;
   public static ArrayList<Servidor> servidores;
-  public static boolean arquivosEnviados;
+  public static volatile boolean arquivosEnviados;
   public static Configuracao config;
   public static volatile int multiplicador;
 
