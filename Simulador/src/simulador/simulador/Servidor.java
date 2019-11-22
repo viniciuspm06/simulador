@@ -7,8 +7,8 @@ public class Servidor {
   private Fila fila;
 
   private int id;
-  private boolean processando;
-  private boolean parado;
+  private volatile boolean processando;
+  private volatile boolean parado;
 
   Servidor(int id, Fila fila) {
     setId(id);
@@ -37,8 +37,8 @@ public class Servidor {
             try {
               Arquivo arquivo = fila.consome();
               Usuario dono = arquivo.getDono();
-              //int tempo = arquivo.getTempoServico() * 1000;
-              int tempo = arquivo.getTempoServico();
+              // int tempo = arquivo.getTempoServico() * 1000;
+              int tempo = arquivo.getTempoServico() * Simulador.multiplicador;
               // Simula o processamento
               try {
                 Thread.sleep(tempo);
@@ -51,6 +51,7 @@ public class Servidor {
             }
           }
           parado = true;
+          return;
         }
       }
     }.start();
