@@ -9,6 +9,7 @@ public class Simulador {
   public static ArrayList<Servidor> servidores;
   public static boolean arquivosEnviados;
   public static Configuracao config;
+  public static volatile int multiplicador;
 
   public static void main(String args[]) {
 
@@ -26,6 +27,10 @@ public class Simulador {
   public static void executaRodada(int rodada) {
     imprime("Comecando rodada: " + rodada);
     long tempoInicial = System.currentTimeMillis();
+    // Calcula multiplicador com base na velocidade fornecida
+    int velocidade = config.getVelocidade(rodada);
+    multiplicador = (int) (1 / (0.01 * velocidade));
+
     // Determina fila a usar
     int tipoFila = config.getTipoFila(rodada);
 
@@ -105,10 +110,11 @@ public class Simulador {
           for (Arquivo arquivo : arquivos) {
             fila.adiciona(arquivo);
           }
-          int tempo = ga.getAleatorio(10) * 1000;
+          int tempo = ga.getAleatorio(10) * multiplicador;
           imprime(usuario.toString());
-          imprime("Esperando " + tempo / 1000 + " segundos...");
-          // Espera tempo random (até 10 segundos) ate o proximo pacote de outro user
+          imprime("Esperando proximo usuario...");
+          // Espera tempo random (até 10 unidades de tempo) ate o proximo pacote de outro
+          // user
           try {
             Thread.sleep(tempo);
           } catch (InterruptedException e) {
