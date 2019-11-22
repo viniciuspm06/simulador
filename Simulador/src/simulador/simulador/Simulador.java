@@ -8,10 +8,26 @@ public class Simulador {
   public static Fila fila;
   public static ArrayList<Servidor> servidores;
   public static boolean arquivosEnviados;
+  public static Configuracao config;
 
   public static void main(String args[]) {
 
-    int tipoFila = Fila.PRIORIDADE;
+    config = new Configuracao("./config.xml");
+
+    for (int i = 0, rodadas = config.getNumeroRodadas(); i < rodadas; i++) {
+      executaRodada(i);
+      // TODO: Gera relatório da rodada
+    }
+
+    // TODO: Gerar relatório final
+
+  }
+
+  public static void executaRodada(int rodada) {
+    imprime("Comecando rodada: " + rodada);
+    long tempoInicial = System.currentTimeMillis();
+    // Determina fila a usar
+    int tipoFila = config.getTipoFila(rodada);
 
     if (tipoFila == Fila.PRIORIDADE) {
       fila = new FilaPrioridade();
@@ -19,26 +35,21 @@ public class Simulador {
       fila = new FilaFIFO();
     }
 
-    ga = new GeradorAleatorio(System.currentTimeMillis());
-
     try {
-      int qtdReplicacoes = 1;
-      int qtdUsuarios = 6;
-      int qtdServidores = 2;
+      int qtdReplicacoes = config.getNumeroReplicacoes(rodada);
+      int qtdUsuarios = config.getQtdUsuarios(rodada);
+      int qtdServidores = config.getQtdServidores(rodada);
 
-      // GeradorAleatorio ga = new GeradorAleatorio(System.currentTimeMillis());
-
-      // quantidade de replicações que serão feitas nos testes
+      // quantidade de replicações que serão feitas na rodada
       for (int i = 0; i < qtdReplicacoes; i++) {
+        int semente = config.getSemente(rodada);
+        if (semente == 0) {
+          ga = new GeradorAleatorio();
+        } else {
+          ga = new GeradorAleatorio(semente);
+        }
         imprime("Começando replicacao " + i);
         arquivosEnviados = false;
-        // gerar arquivos com tamanhos aletórios
-        // int qtdArquivos = ga.getQtdArquivoAleatorio();
-        // teste com geração de arquivos aleatorioamente
-        // ArrayList<Arquivo> arquivos =
-        // Arquivo.gerarArquivosUpload(ga.getQtdArquivoAleatorio(), ga);
-        // teste(arquivos);
-
         ArrayList<Usuario> usuarios = criaUsuarios(qtdUsuarios);
         enfileraArquivos(usuarios);
         iniciaServidores(qtdServidores);
@@ -48,12 +59,14 @@ public class Simulador {
         }
         // Fim da replicacao
         paraServidores();
+        // TODO: Gera relatorio parcial da replicacao
       }
-
     } catch (Exception e) {
       e.printStackTrace();
+      return;
     }
-
+    long tempoFinal = System.currentTimeMillis();
+    imprime("Tempo da rodada: " + (tempoFinal - tempoInicial) + " milissegundos");
   }
 
   public static ArrayList<Usuario> criaUsuarios(int qtdUsuarios) {
