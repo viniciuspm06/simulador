@@ -75,8 +75,8 @@ public class Simulador {
   }
 
   public static ArrayList<Usuario> criaUsuarios(int qtdUsuarios) {
-    // Chumbando para testes, max 8 usuarios
-    String nomes[] = { "A", "B", "C", "D", "E", "F", "G", "H" };
+    // Max 10 usuarios
+    String nomes[] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
     ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     for (int i = 0; i < qtdUsuarios; i++) {
       Usuario usuario = new Usuario(nomes[i], ga);
