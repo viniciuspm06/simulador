@@ -1,0 +1,39 @@
+<simulador>
+  <semente>1</semente> <!-- Só para DEBUG: retirar para ter random, branco ou 0 desabilita -->
+  <!-- Cada config corresponde a uma rodada a ser feita -->
+  <config>
+    <replicacoes>1</replicacoes> <!-- Quantidade de replicacoes a executar -->
+    <fila>FIFO</fila> <!-- Aceita: FIFO | PRIORIDADE -->
+    <velocidade>100</velocidade> <!-- Aceita: 0 a 100, quanto maior, mais rapido -->
+    <qtdServidores>1</qtdServidores> <!-- Nao exagerar, cada server abre uma thread -->
+    <qtdUsuarios>4</qtdUsuarios> <!-- Numero de usuarios (max 10) que estarao enviando arquivos -->
+  </config>
+  <config>
+    <replicacoes>1</replicacoes>
+    <fila>PRIORIDADE</fila>
+    <velocidade>100</velocidade>
+    <qtdServidores>1</qtdServidores>
+    <qtdUsuarios>4</qtdUsuarios>
+  </config>
+  <config>
+    <replicacoes>1</replicacoes>
+    <fila>FIFO</fila>
+    <velocidade>100</velocidade>
+    <qtdServidores>2</qtdServidores>
+    <qtdUsuarios>4</qtdUsuarios>
+  </config>
+  <config>
+    <replicacoes>1</replicacoes>
+    <fila>PRIORIDADE</fila>
+    <velocidade>100</velocidade>
+    <qtdServidores>2</qtdServidores>
+    <qtdUsuarios>4</qtdUsuarios>
+  </config>
+  <config>
+    <replicacoes>1</replicacoes>
+    <fila>FIFO</fila>
+    <velocidade>100</velocidade>
+    <qtdServidores>3</qtdServidores>
+    <qtdUsuarios>4</qtdUsuarios>
+  </config>
+</simulador>
