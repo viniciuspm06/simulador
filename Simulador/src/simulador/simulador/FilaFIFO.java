@@ -15,6 +15,7 @@ public class FilaFIFO extends Fila {
   }
 
   public synchronized void adiciona(Arquivo arquivo) {
+	  arquivo.setTempoChegada(Simulador.relogio.getTempoAtual());
     arquivos.addLast(arquivo);
   }
 

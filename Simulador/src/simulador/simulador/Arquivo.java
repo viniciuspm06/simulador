@@ -6,8 +6,8 @@ public class Arquivo {
 
   private long numLinhas;
   private int tempoServico;
-  //private int tempoChegada;
-  //private int tempoEspera;
+  private int tempoChegada;
+  private int tempoEspera;
   private Usuario dono;
 
   public long getNumLinhas() {
@@ -33,6 +33,19 @@ public class Arquivo {
   public void setDono(Usuario dono) {
     this.dono = dono;
   }
+  
+
+  public int getTempoChegada() {
+	return tempoChegada;
+  }
+
+  public void setTempoChegada(int tempoChegada) {
+	  this.tempoChegada = tempoChegada;
+  }
+  
+  public void setTempoEmpera(int tInicioProc){
+	  tempoEspera = tInicioProc - tempoChegada;
+  }
 
   // funl�ao que monta um array list simulando o upload de varios arquivos para o
   // sistema
@@ -53,5 +66,14 @@ public class Arquivo {
 
     return arquivos;
   }
+  
+  @Override
+	public String toString() {
+	  return "Tamanho: " + numLinhas 
+			  + " - Tempo Serviço: " + tempoServico
+			  + " - Tempo Chegada: " + tempoChegada
+			  + " - Tempo Espera: " + tempoEspera
+	  		  + " - Dono: " + dono.getNome(); 
+	}
 
 }

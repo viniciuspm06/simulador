@@ -50,9 +50,8 @@ public class Usuario {
 
   public synchronized void informaProcessamento(long qtdLinhas, int tempo) {
     //System.out.println("Processado arquivo do " + this.nome + " com " + qtdLinhas + " linhas no tempo de "
-    //    + tempo / 1000 + " segundos");
-	  System.out.println("Processado arquivo do " + this.nome + " com " + qtdLinhas + " linhas no tempo de "
-			        + tempo + " milisegundos");
+	//		        + tempo + " milisegundos");
+	
   }
 
   @Override

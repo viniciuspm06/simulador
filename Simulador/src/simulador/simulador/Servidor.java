@@ -1,7 +1,5 @@
 package simulador;
 
-import java.util.NoSuchElementException;
-
 public class Servidor {
 
   private Fila fila;
@@ -21,38 +19,39 @@ public class Servidor {
     new Thread() {
       @Override
       public void run() {
-        if (!processando) {
-          processando = true;
-          parado = false;
-          while (processando) {
-            if (fila.estaVazia()) {
-              // Delay do servidor para fila vazia = 10ms
-              try {
-                Thread.sleep(10);
-              } catch (InterruptedException e) {
-                e.printStackTrace();
-              }
-              continue;
-            }
-            try {
-              Arquivo arquivo = fila.consome();
-              Usuario dono = arquivo.getDono();
-              // int tempo = arquivo.getTempoServico() * 1000;
-              int tempo = arquivo.getTempoServico() * Simulador.multiplicador;
-              // Simula o processamento
-              try {
-                Thread.sleep(tempo);
-              } catch (InterruptedException e) {
-                e.printStackTrace();
-              }
-              // Avisa o dono
-              dono.informaProcessamento(arquivo.getNumLinhas(), tempo);
-            } catch (NoSuchElementException e) {
-            }
-          }
-          parado = true;
-          return;
-        }
+    	  
+    	  try {
+	    	  if (!processando) {
+	    		  processando = true;
+		          parado = false;
+		          
+		          while (processando) {
+		            if (fila.estaVazia()) {
+		              // Delay do servidor para fila vazia = 10ms
+		              Thread.sleep(10);
+		              continue;
+		            }
+			        
+		            Arquivo arquivo = fila.consome();
+			        //iniciar o processamento do arquivo
+		            arquivo.setTempoEmpera(Simulador.relogio.getTempoAtual());
+		            Simulador.imprime(arquivo.toString());
+		            
+		            Usuario dono = arquivo.getDono();
+			        // int tempo = arquivo.getTempoServico() * 1000;
+			        int tempo = arquivo.getTempoServico() * Simulador.multiplicador;
+			        // Simula o processamento
+			        Thread.sleep(tempo);
+			        // Avisa o dono
+			        dono.informaProcessamento(arquivo.getNumLinhas(), tempo);
+			      }
+		          
+		          parado = true;
+		          return;
+	    	  }
+    	  }catch(Exception e) {
+    		  e.printStackTrace();
+    	  }
       }
     }.start();
   }

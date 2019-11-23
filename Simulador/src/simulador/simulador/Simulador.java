@@ -20,11 +20,13 @@ public class Simulador {
     
     for (int i = 0, rodadas = config.getNumeroRodadas(); i < rodadas; i++) {
     	
+    	relogio.zerar();
     	imprime(config.getIdentificacao(i));
     	executaRodada(i);
       // TODO: Gera relatÃ³rio da rodada
     }
-
+    
+    relogio.desligar();
     // TODO: Gerar relatÃ³rio final
 
   }
