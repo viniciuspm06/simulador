@@ -1,12 +1,23 @@
 package simulador;
 
 public class Parametros {
+  private String identificacao;
   private int replicacoes;
   private int tipoFila;
   private int velocidade;
   private int qtdServidores;
   private int qtdUsuarios;
   private int semente;
+  
+  
+  
+  public String getIdentificacao() {
+	return identificacao;
+  }
+
+  public void setIdentificacao(String identificacao) {
+	  this.identificacao = identificacao;
+  }
 
   public int getReplicacoes() {
     return this.replicacoes;

@@ -14,13 +14,15 @@ public class Simulador {
   public static void main(String args[]) {
 
     config = new Configuracao("./config.xml");
-
+    
     for (int i = 0, rodadas = config.getNumeroRodadas(); i < rodadas; i++) {
-      executaRodada(i);
-      // TODO: Gera relatório da rodada
+    	
+    	imprime(config.getIdentificacao(i));
+    	executaRodada(i);
+      // TODO: Gera relatÃ³rio da rodada
     }
 
-    // TODO: Gerar relatório final
+    // TODO: Gerar relatÃ³rio final
 
   }
 
@@ -45,7 +47,7 @@ public class Simulador {
       int qtdUsuarios = config.getQtdUsuarios(rodada);
       int qtdServidores = config.getQtdServidores(rodada);
 
-      // quantidade de replicações que serão feitas na rodada
+      // quantidade de replicaÃ§Ãµes que serÃ£o feitas na rodada
       for (int i = 0; i < qtdReplicacoes; i++) {
         int semente = config.getSemente(rodada);
         if (semente == 0) {
@@ -53,12 +55,12 @@ public class Simulador {
         } else {
           ga = new GeradorAleatorio(semente);
         }
-        imprime("Começando replicacao " + i);
+        imprime("ComeÃ§ando replicacao " + i);
         arquivosEnviados = false;
         ArrayList<Usuario> usuarios = criaUsuarios(qtdUsuarios);
         enfileraArquivos(usuarios);
         iniciaServidores(qtdServidores);
-        // Verificacao se o simulador terminou de rodar a replicação
+        // Verificacao se o simulador terminou de rodar a replicaÃ§Ã£o
         while (!fila.estaVazia() || !arquivosEnviados) {
           Thread.sleep(10);
         }
@@ -113,7 +115,7 @@ public class Simulador {
           int tempo = ga.getAleatorio(10) * multiplicador;
           imprime(usuario.toString());
           imprime("Esperando proximo usuario...");
-          // Espera tempo random (até 10 unidades de tempo) ate o proximo pacote de outro
+          // Espera tempo random (atÃ© 10 unidades de tempo) ate o proximo pacote de outro
           // user
           try {
             Thread.sleep(tempo);

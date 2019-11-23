@@ -57,5 +57,9 @@ public final class Configuracao {
   public int getQtdUsuarios(int index) {
     return listaParametros.get(index).getQtdUsuarios();
   }
+  
+  public String getIdentificacao(int index) {
+	    return listaParametros.get(index).getIdentificacao();
+  }
 
 }

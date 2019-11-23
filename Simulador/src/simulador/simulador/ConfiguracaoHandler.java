@@ -86,6 +86,9 @@ public class ConfiguracaoHandler extends DefaultHandler {
     case "qtdUsuarios":
       parametros.setQtdUsuarios(Integer.parseInt(valor));
       break;
+    case "identificacao":
+        parametros.setIdentificacao(valor);
+        break;
     default:
       return;
     }

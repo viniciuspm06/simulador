@@ -2,6 +2,7 @@
   <semente>1</semente> <!-- Só para DEBUG: retirar para ter random, branco ou 0 desabilita -->
   <!-- Cada config corresponde a uma rodada a ser feita -->
   <config>
+    <identificacao>Estado Atual - 1 Servidor/ Fila FIFO</identificacao> <!-- Identificação de qual rodada o relatório -->
     <replicacoes>1</replicacoes> <!-- Quantidade de replicacoes a executar -->
     <fila>FIFO</fila> <!-- Aceita: FIFO | PRIORIDADE -->
     <velocidade>100</velocidade> <!-- Aceita: 0 a 100, quanto maior, mais rapido -->
@@ -9,6 +10,7 @@
     <qtdUsuarios>4</qtdUsuarios> <!-- Numero de usuarios (max 10) que estarao enviando arquivos -->
   </config>
   <config>
+    <identificacao>Implementação Prioridade</identificacao>
     <replicacoes>1</replicacoes>
     <fila>PRIORIDADE</fila>
     <velocidade>100</velocidade>
@@ -16,6 +18,7 @@
     <qtdUsuarios>4</qtdUsuarios>
   </config>
   <config>
+    <identificacao>Aumento para 2 Servidores </identificacao>
     <replicacoes>1</replicacoes>
     <fila>FIFO</fila>
     <velocidade>100</velocidade>
@@ -23,6 +26,7 @@
     <qtdUsuarios>4</qtdUsuarios>
   </config>
   <config>
+    <identificacao>Implementação Prioridade e Aumento para 2 Servidores</identificacao>
     <replicacoes>1</replicacoes>
     <fila>PRIORIDADE</fila>
     <velocidade>100</velocidade>
@@ -30,6 +34,7 @@
     <qtdUsuarios>4</qtdUsuarios>
   </config>
   <config>
+    <identificacao>Aumento para 2 servidores</identificacao>
     <replicacoes>1</replicacoes>
     <fila>FIFO</fila>
     <velocidade>100</velocidade>
