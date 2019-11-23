@@ -10,10 +10,13 @@ public class Simulador {
   public static volatile boolean arquivosEnviados;
   public static Configuracao config;
   public static volatile int multiplicador;
+  public static Relogio relogio;
 
   public static void main(String args[]) {
 
     config = new Configuracao("./config.xml");
+    relogio = new Relogio();
+    relogio.iniciar();
     
     for (int i = 0, rodadas = config.getNumeroRodadas(); i < rodadas; i++) {
     	
