@@ -6,6 +6,8 @@ public class Usuario {
 
   private int totalArquivosEnviados;
   private int totalTempoServico;
+  private int totalTempoEspera;
+  private int totalTamanhoArquivo;
   private GeradorAleatorio ga;
   private String nome;
 
@@ -48,15 +50,21 @@ public class Usuario {
     return arquivos;
   }
 
-  public synchronized void informaProcessamento(long qtdLinhas, int tempo) {
+  public synchronized void informaProcessamento(Arquivo arquivo) {
     //System.out.println("Processado arquivo do " + this.nome + " com " + qtdLinhas + " linhas no tempo de "
 	//		        + tempo + " milisegundos");
-	
+	//totalTempoServico += tempo;
+	totalTempoServico += arquivo.getTempoServico();
+	totalTamanhoArquivo += arquivo.getNumLinhas();
+	totalTempoEspera =+ arquivo.getTempoEmpera();
   }
 
   @Override
   public String toString() {
-    return "Usuario " + nome + " com " + totalArquivosEnviados + " arquivos";
+	  return "Usuario " + nome + " com " + totalArquivosEnviados + " arquivos"
+	  		+ " - totalTempoServico: " + totalTempoServico + ""
+	  		+ " - totalTamanhoArquivo: " + totalTamanhoArquivo + ""
+	  		+ " - totalTempoEspera: " + totalTempoEspera;
   }
 
 }

@@ -43,7 +43,7 @@ public class Servidor {
 			        // Simula o processamento
 			        Thread.sleep(tempo);
 			        // Avisa o dono
-			        dono.informaProcessamento(arquivo.getNumLinhas(), tempo);
+			        dono.informaProcessamento(arquivo);
 			      }
 		          
 		          parado = true;

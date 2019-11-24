@@ -69,8 +69,10 @@ public class Simulador {
         while (!fila.estaVazia() || !arquivosEnviados) {
           Thread.sleep(10);
         }
+        
         // Fim da replicacao
         paraServidores();
+        gerarRelatorio(usuarios);
         // TODO: Gera relatorio parcial da replicacao
       }
     } catch (Exception e) {
@@ -79,6 +81,12 @@ public class Simulador {
     }
     long tempoFinal = System.currentTimeMillis();
     imprime("Tempo da rodada: " + (tempoFinal - tempoInicial) + " milissegundos");
+  }
+  
+  public static void gerarRelatorio(ArrayList<Usuario> usuarios) {
+	  Relatorio r = new Relatorio();
+	  r.setUsuarios(usuarios);
+	  r.exportar();
   }
 
   public static ArrayList<Usuario> criaUsuarios(int qtdUsuarios) {
@@ -135,14 +143,6 @@ public class Simulador {
 
   public synchronized static void imprime(String s) {
     System.out.println(s);
-  }
-
-  public static void teste(ArrayList<Arquivo> arquivos) {
-    int i = 0;
-    for (Arquivo a : arquivos) {
-      i++;
-      System.out.println("Arquivo: " + i + " -- Numero de Linhas:" + a.getNumLinhas());
-    }
   }
 
 }

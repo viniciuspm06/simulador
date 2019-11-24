@@ -46,6 +46,10 @@ public class Arquivo {
   public void setTempoEmpera(int tInicioProc){
 	  tempoEspera = tInicioProc - tempoChegada;
   }
+  
+  public int getTempoEmpera(){
+	  return tempoEspera;
+  }
 
   // funl�ao que monta um array list simulando o upload de varios arquivos para o
   // sistema
