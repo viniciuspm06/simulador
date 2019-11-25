@@ -61,10 +61,16 @@ public class Usuario {
 
   @Override
   public String toString() {
-	  return "Usuario " + nome + " com " + totalArquivosEnviados + " arquivos"
-	  		+ " - totalTempoServico: " + totalTempoServico + ""
-	  		+ " - totalTamanhoArquivo: " + totalTamanhoArquivo + ""
-	  		+ " - totalTempoEspera: " + totalTempoEspera;
+	  //return "Usuario " + nome + " com " + totalArquivosEnviados + " arquivos"
+	  //		+ " - Tempo Total de Serviço: " + totalTempoServico + ""
+	  //		+ " - Tamanho total dos arquivos enviados em linhas " + totalTamanhoArquivo + ""
+	  //		+ " - Tempo total de espera " + totalTempoEspera;
+  
+	  return "|"+ Relatorio.formatarPosicoes(nome) + 
+			 "|" + Relatorio.formatarPosicoes(Integer.toString(totalArquivosEnviados)) + 
+			 "|" + Relatorio.formatarPosicoes(Integer.toString(totalTempoServico)) + 
+			 "|" + Relatorio.formatarPosicoes(Integer.toString(totalTamanhoArquivo)) + 
+			 "|" + Relatorio.formatarPosicoes(Integer.toString(totalTempoEspera)) + '|';
   }
 
 }
