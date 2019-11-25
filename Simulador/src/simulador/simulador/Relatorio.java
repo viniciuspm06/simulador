@@ -2,6 +2,9 @@ package simulador;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Relatorio {
@@ -56,6 +59,11 @@ public class Relatorio {
 
       gravarArq.printf("Resultados%n");
       quebraLinha();
+
+      // Adiciona data/hora de agora = identificar de quando é o arquivo
+      DateFormat formataData = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+      Date data = new Date();
+      gravarArq.printf("Data/hora desta simulacao: " + formataData.format(data) + "%n%n");
 
       for (String linha : linhasResultado) {
         gravarArq.printf(linha);
