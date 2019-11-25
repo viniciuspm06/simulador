@@ -19,39 +19,39 @@ public class Servidor {
     new Thread() {
       @Override
       public void run() {
-    	  
-    	  try {
-	    	  if (!processando) {
-	    		  processando = true;
-		          parado = false;
-		          
-		          while (processando) {
-		            if (fila.estaVazia()) {
-		              // Delay do servidor para fila vazia = 10ms
-		              Thread.sleep(10);
-		              continue;
-		            }
-			        
-		            Arquivo arquivo = fila.consome();
-			        //iniciar o processamento do arquivo
-		            arquivo.setTempoEmpera(Simulador.relogio.getTempoAtual());
-		            Simulador.imprime(arquivo.toString());
-		            
-		            Usuario dono = arquivo.getDono();
-			        // int tempo = arquivo.getTempoServico() * 1000;
-			        int tempo = arquivo.getTempoServico() * Simulador.multiplicador;
-			        // Simula o processamento
-			        Thread.sleep(tempo);
-			        // Avisa o dono
-			        dono.informaProcessamento(arquivo);
-			      }
-		          
-		          parado = true;
-		          return;
-	    	  }
-    	  }catch(Exception e) {
-    		  e.printStackTrace();
-    	  }
+
+        try {
+          if (!processando) {
+            processando = true;
+            parado = false;
+
+            while (processando) {
+              if (fila.estaVazia()) {
+                // Delay do servidor para fila vazia = 10ms
+                Thread.sleep(10);
+                continue;
+              }
+
+              Arquivo arquivo = fila.consome();
+              // iniciar o processamento do arquivo
+              arquivo.setTempoEmpera(Simulador.relogio.getTempoAtual());
+              Simulador.imprime(arquivo.toString());
+
+              Usuario dono = arquivo.getDono();
+              // int tempo = arquivo.getTempoServico() * 1000;
+              int tempo = arquivo.getTempoServico() * Simulador.multiplicador;
+              // Simula o processamento
+              Thread.sleep(tempo);
+              // Avisa o dono
+              dono.informaProcessamento(arquivo);
+            }
+
+            parado = true;
+            return;
+          }
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
     }.start();
   }

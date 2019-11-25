@@ -27,7 +27,7 @@ public class FilaPrioridade extends Fila {
   }
 
   public synchronized void adiciona(Arquivo arquivo) {
-	arquivo.setTempoChegada(Simulador.relogio.getTempoAtual());
+    arquivo.setTempoChegada(Simulador.relogio.getTempoAtual());
     fila.add(arquivo);
   }
 
