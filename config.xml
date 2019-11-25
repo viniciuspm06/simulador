@@ -34,7 +34,7 @@
     <qtdUsuarios>4</qtdUsuarios>
   </config>
   <config>
-    <identificacao>Aumento para 2 servidores</identificacao>
+    <identificacao>Aumento para 3 servidores</identificacao>
     <replicacoes>1</replicacoes>
     <fila>FIFO</fila>
     <velocidade>100</velocidade>
