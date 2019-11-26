@@ -33,22 +33,21 @@ public class Arquivo {
   public void setDono(Usuario dono) {
     this.dono = dono;
   }
-  
 
   public int getTempoChegada() {
-	return tempoChegada;
+    return tempoChegada;
   }
 
   public void setTempoChegada(int tempoChegada) {
-	  this.tempoChegada = tempoChegada;
+    this.tempoChegada = tempoChegada;
   }
-  
-  public void setTempoEmpera(int tInicioProc){
-	  tempoEspera = tInicioProc - tempoChegada;
+
+  public void setTempoEspera(int tInicioProc) {
+    tempoEspera = tInicioProc - tempoChegada;
   }
-  
-  public int getTempoEmpera(){
-	  return tempoEspera;
+
+  public int getTempoEspera() {
+    return tempoEspera;
   }
 
   // funl�ao que monta um array list simulando o upload de varios arquivos para o
@@ -70,14 +69,11 @@ public class Arquivo {
 
     return arquivos;
   }
-  
+
   @Override
-	public String toString() {
-	  return "Tamanho: " + numLinhas 
-			  + " - Tempo Serviço: " + tempoServico
-			  + " - Tempo Chegada: " + tempoChegada
-			  + " - Tempo Espera: " + tempoEspera
-	  		  + " - Dono: " + dono.getNome(); 
-	}
+  public String toString() {
+    return "Tamanho: " + numLinhas + " - Tempo Serviço: " + tempoServico + " - Tempo Chegada: " + tempoChegada
+        + " - Tempo Espera: " + tempoEspera + " - Dono: " + dono.getNome();
+  }
 
 }

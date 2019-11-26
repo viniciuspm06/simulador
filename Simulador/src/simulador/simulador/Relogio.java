@@ -34,7 +34,7 @@ public class Relogio implements Runnable {
     try {
       while (ligado) {
         tempoAtual++;
-        Thread.sleep(1 + Simulador.multiplicador);
+        Thread.sleep(1 * Simulador.multiplicador);
         // System.out.println("Tempo Atual: " + tempoAtual);
       }
     } catch (Exception e) {
