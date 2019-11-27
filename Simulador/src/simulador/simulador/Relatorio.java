@@ -50,9 +50,9 @@ public class Relatorio {
 
   public void addResultado(String identificacao, int replicacao, ArrayList<Usuario> usuarios) {
 
-    linhasResultado.add("Identificação: " + identificacao);
+    linhasResultado.add("IdentificaÃ§Ã£o: " + identificacao);
     quebraLinha();
-    linhasResultado.add("Nº da Replicação: " + replicacao);
+    linhasResultado.add("NÂº da ReplicaÃ§Ã£o: " + replicacao);
     quebraLinha();
     cabecalho();
     quebraLinha();
@@ -87,22 +87,22 @@ public class Relatorio {
 
   public void cabecalho() {
     String s = "|" + formatarPosicoes("Usuario") + "|" + formatarPosicoes("Qtd Arquivos Enviados") + "|"
-        + formatarPosicoes("Tempo Total Serviço") + "|" + formatarPosicoes("Tamanho Somado Arquivos") + "|"
+        + formatarPosicoes("Tempo Total ServiÃ§o") + "|" + formatarPosicoes("Tamanho Somado Arquivos") + "|"
         + formatarPosicoes("Tempo Total Espera") + "|";
     linhasResultado.add(s);
   }
 
   public void addEstatisticasRodada() {
-    // Mostra estatísticas comparando as replicações
+    // Mostra estatÃ­sticas comparando as replicaÃ§Ãµes
     quebraLinha();
     quebraLinha();
-    linhasResultado.add("Estatísticas da rodada:");
+    linhasResultado.add("EstatÃ­sticas da rodada:");
     quebraLinha();
-    String cabecalho = "|" + formatarPosicoes("Estatística") + "|" + formatarPosicoes("Arquivos processados") + "|"
-        + formatarPosicoes("Utilização de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
-        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo médio fila") + "|";
-    String[] linhas = { "|" + formatarPosicoes("Mínimo") + "|", "|" + formatarPosicoes("Máximo") + "|",
-        "|" + formatarPosicoes("Média") + "|", "|" + formatarPosicoes("Desvio padrão") + "|" };
+    String cabecalho = "|" + formatarPosicoes("EstatÃ­stica") + "|" + formatarPosicoes("Arquivos processados") + "|"
+        + formatarPosicoes("UtilizaÃ§Ã£o de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
+        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo mÃ©dio fila") + "|";
+    String[] linhas = { "|" + formatarPosicoes("MÃ­nimo") + "|", "|" + formatarPosicoes("MÃ¡ximo") + "|",
+        "|" + formatarPosicoes("MÃ©dia") + "|", "|" + formatarPosicoes("Desvio padrÃ£o") + "|" };
     for (int i = 0; i < 5; i++) {
       double minimo = Double.MAX_VALUE;
       double maximo = 0;
@@ -140,8 +140,8 @@ public class Relatorio {
     linhasResultado.add("Metricas do servidor:");
     quebraLinha();
     String cabecalho = "|" + formatarPosicoes("Arquivos processados") + "|"
-        + formatarPosicoes("Utilização de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
-        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo médio fila") + "|";
+        + formatarPosicoes("UtilizaÃ§Ã£o de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
+        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo mÃ©dio fila") + "|";
     linhasResultado.add(cabecalho);
     double mediaUtilizacao = 0;
     for (Double utilizacao : metricaUtilizacao) {
@@ -172,7 +172,7 @@ public class Relatorio {
       gravarArq.printf("Resultados%n");
       quebraLinha();
 
-      // Adiciona data/hora de agora = identificar de quando é o arquivo
+      // Adiciona data/hora de agora = identificar de quando Ã© o arquivo
       DateFormat formataData = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
       Date data = new Date();
       gravarArq.printf("Data/hora desta simulacao: " + formataData.format(data) + "%n%n");
@@ -180,7 +180,7 @@ public class Relatorio {
       for (String linha : linhasResultado) {
         gravarArq.printf(linha);
       }
-
+      
       arq.close();
 
     } catch (Exception e) {
@@ -189,7 +189,7 @@ public class Relatorio {
   }
 
   public static String formatarPosicoes(String s) {
-    return String.format("%1$-25s", s);
+    return String.format("%1$-30s", s);
 
   }
 
