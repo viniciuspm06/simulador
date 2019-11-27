@@ -32,7 +32,7 @@ public class Simulador {
   }
 
   public static void executaRodada(int rodada) {
-    imprime("ComeÃ§ando rodada: " + rodada);
+    imprime("Começando rodada: " + rodada);
     long tempoInicial = System.currentTimeMillis();
     // Calcula multiplicador com base na velocidade fornecida
     int velocidade = config.getVelocidade(rodada);
@@ -61,7 +61,7 @@ public class Simulador {
         } else {
           ga = new GeradorAleatorio(semente);
         }
-        imprime("ComeÃ§ando replicacao " + i);
+        imprime("Começando replicacao " + i);
         arquivosEnviados = false;
         ArrayList<Usuario> usuarios = criaUsuarios(qtdUsuarios);
         enfileraArquivos(usuarios);
@@ -118,7 +118,7 @@ public class Simulador {
         for (Usuario usuario : usuarios) {
           ArrayList<Arquivo> arquivos = usuario.enviaArquivos();
           usuario.setTempoEnvio(relogio.getTempoAtual());
-          
+
           for (Arquivo arquivo : arquivos) {
             fila.adiciona(arquivo);
           }

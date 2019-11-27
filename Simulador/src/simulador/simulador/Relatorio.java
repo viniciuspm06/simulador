@@ -50,9 +50,9 @@ public class Relatorio {
 
   public void addResultado(String identificacao, int replicacao, ArrayList<Usuario> usuarios) {
 
-    linhasResultado.add("IdentificaÃ§Ã£o: " + identificacao);
+    linhasResultado.add("Identificação: " + identificacao);
     quebraLinha();
-    linhasResultado.add("NÂº da ReplicaÃ§Ã£o: " + replicacao);
+    linhasResultado.add("Nº da Replicação: " + replicacao);
     quebraLinha();
     cabecalho();
     quebraLinha();
@@ -87,7 +87,7 @@ public class Relatorio {
 
   public void cabecalho() {
     String s = "|" + formatarPosicoes("Usuario") + "|" + formatarPosicoes("Qtd Arquivos Enviados") + "|"
-        + formatarPosicoes("Tempo Total ServiÃ§o") + "|" + formatarPosicoes("Tamanho Somado Arquivos") + "|"
+        + formatarPosicoes("Tempo Total Serviço") + "|" + formatarPosicoes("Tamanho Somado Arquivos") + "|"
         + formatarPosicoes("Tempo Total Espera") + "|";
     linhasResultado.add(s);
   }
@@ -98,11 +98,11 @@ public class Relatorio {
     quebraLinha();
     linhasResultado.add("EstatÃ­sticas da rodada:");
     quebraLinha();
-    String cabecalho = "|" + formatarPosicoes("EstatÃ­stica") + "|" + formatarPosicoes("Arquivos processados") + "|"
-        + formatarPosicoes("UtilizaÃ§Ã£o de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
-        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo mÃ©dio fila") + "|";
-    String[] linhas = { "|" + formatarPosicoes("MÃ­nimo") + "|", "|" + formatarPosicoes("MÃ¡ximo") + "|",
-        "|" + formatarPosicoes("MÃ©dia") + "|", "|" + formatarPosicoes("Desvio padrÃ£o") + "|" };
+    String cabecalho = "|" + formatarPosicoes("Estatística") + "|" + formatarPosicoes("Arquivos processados") + "|"
+        + formatarPosicoes("Utilizaçãoo de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
+        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo médio fila") + "|";
+    String[] linhas = { "|" + formatarPosicoes("Mínimo") + "|", "|" + formatarPosicoes("Máximo") + "|",
+        "|" + formatarPosicoes("Média") + "|", "|" + formatarPosicoes("Desvio padrão") + "|" };
     for (int i = 0; i < 5; i++) {
       double minimo = Double.MAX_VALUE;
       double maximo = 0;
@@ -140,8 +140,8 @@ public class Relatorio {
     linhasResultado.add("Metricas do servidor:");
     quebraLinha();
     String cabecalho = "|" + formatarPosicoes("Arquivos processados") + "|"
-        + formatarPosicoes("UtilizaÃ§Ã£o de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
-        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo mÃ©dio fila") + "|";
+        + formatarPosicoes("Utilização de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
+        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo médio fila") + "|";
     linhasResultado.add(cabecalho);
     double mediaUtilizacao = 0;
     for (Double utilizacao : metricaUtilizacao) {
@@ -180,7 +180,7 @@ public class Relatorio {
       for (String linha : linhasResultado) {
         gravarArq.printf(linha);
       }
-      
+
       arq.close();
 
     } catch (Exception e) {
