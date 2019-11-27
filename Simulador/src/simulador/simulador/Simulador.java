@@ -23,6 +23,7 @@ public class Simulador {
     for (int i = 0, rodadas = config.getNumeroRodadas(); i < rodadas; i++) {
       imprime(config.getIdentificacao(i));
       executaRodada(i);
+      relatorio.addEstatisticasRodada();
     }
 
     relogio.desligar();

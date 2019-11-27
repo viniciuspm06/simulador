@@ -13,6 +13,7 @@ public class Relatorio {
   private int metricaTotalArquivosProcessados; // Total de arquivos processados
   private double metricaTempoMedioDaFila; // Tempo medio para o arquivo processado, queremos reduzir
   private ArrayList<Double> metricaUtilizacao; // Indica a % de utilizacao de cada servidor, quanto maior, melhor
+  private ArrayList<Double[]> estatisticasRodada;
   private ArrayList<String> linhasResultado;
   private String caminho;
 
@@ -20,6 +21,7 @@ public class Relatorio {
     this.caminho = caminho;
     linhasResultado = new ArrayList<String>();
     metricaUtilizacao = new ArrayList<Double>();
+    estatisticasRodada = new ArrayList<Double[]>();
   }
 
   public void setTempoTotalServico(int tempoTotalServico) {
@@ -90,6 +92,50 @@ public class Relatorio {
     linhasResultado.add(s);
   }
 
+  public void addEstatisticasRodada() {
+    // Mostra estatísticas comparando as replicações
+    quebraLinha();
+    quebraLinha();
+    linhasResultado.add("Estatísticas da rodada:");
+    quebraLinha();
+    String cabecalho = "|" + formatarPosicoes("Estatística") + "|" + formatarPosicoes("Arquivos processados") + "|"
+        + formatarPosicoes("Utilização de servidores") + "|" + formatarPosicoes("Tempo esperando") + "|"
+        + formatarPosicoes("Tempo processando") + "|" + formatarPosicoes("Tempo médio fila") + "|";
+    String[] linhas = { "|" + formatarPosicoes("Mínimo") + "|", "|" + formatarPosicoes("Máximo") + "|",
+        "|" + formatarPosicoes("Média") + "|", "|" + formatarPosicoes("Desvio padrão") + "|" };
+    for (int i = 0; i < 5; i++) {
+      double minimo = Double.MAX_VALUE;
+      double maximo = 0;
+      double media = 0;
+      double desvioPadrao = 0;
+      int tamanho = estatisticasRodada.size();
+      for (int j = 0; j < tamanho; j++) {
+        double numero = estatisticasRodada.get(j)[i];
+        minimo = Double.min(numero, minimo);
+        maximo = Double.max(numero, maximo);
+        media += numero;
+      }
+      media = media / tamanho;
+      for (int j = 0; j < tamanho; j++) {
+        double numero = estatisticasRodada.get(j)[i];
+        desvioPadrao += Math.pow((numero - media), 2);
+      }
+      desvioPadrao = Math.sqrt(desvioPadrao / tamanho);
+      linhas[0] += formatarPosicoes(Double.toString(minimo)) + "|";
+      linhas[1] += formatarPosicoes(Double.toString(maximo)) + "|";
+      linhas[2] += formatarPosicoes(Double.toString(media)) + "|";
+      linhas[3] += formatarPosicoes(Double.toString(desvioPadrao)) + "|";
+    }
+    linhasResultado.add(cabecalho);
+    quebraLinha();
+    for (String linha : linhas) {
+      linhasResultado.add(linha);
+      quebraLinha();
+    }
+    quebraLinha();
+    quebraLinha();
+  }
+
   public void addMetricasServidor() {
     linhasResultado.add("Metricas do servidor:");
     quebraLinha();
@@ -111,6 +157,9 @@ public class Relatorio {
         + formatarPosicoes(formatarTempoMedio) + "|";
     quebraLinha();
     linhasResultado.add(metricas);
+    Double[] estatisticas = { (double) metricaTotalArquivosProcessados, mediaUtilizacao,
+        (double) metricaTempoTotalEspera, (double) metricaTempoTotalServico, metricaTempoMedioDaFila };
+    estatisticasRodada.add(estatisticas);
   }
 
   public void exportar() {
