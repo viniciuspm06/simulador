@@ -32,7 +32,7 @@ public class Simulador {
   }
 
   public static void executaRodada(int rodada) {
-    imprime("Começando rodada: " + rodada);
+    imprime("ComeÃ§ando rodada: " + rodada);
     long tempoInicial = System.currentTimeMillis();
     // Calcula multiplicador com base na velocidade fornecida
     int velocidade = config.getVelocidade(rodada);
@@ -52,7 +52,7 @@ public class Simulador {
       int qtdUsuarios = config.getQtdUsuarios(rodada);
       int qtdServidores = config.getQtdServidores(rodada);
 
-      // quantidade de replicações que serão feitas na rodada
+      // quantidade de replicaÃ§Ãµes que serÃ£o feitas na rodada
       for (int i = 0; i < qtdReplicacoes; i++) {
         relogio.zerar();
         int semente = config.getSemente(rodada);
@@ -61,12 +61,12 @@ public class Simulador {
         } else {
           ga = new GeradorAleatorio(semente);
         }
-        imprime("Começando replicacao " + i);
+        imprime("ComeÃ§ando replicacao " + i);
         arquivosEnviados = false;
         ArrayList<Usuario> usuarios = criaUsuarios(qtdUsuarios);
         enfileraArquivos(usuarios);
         iniciaServidores(qtdServidores);
-        // Verificacao se o simulador terminou de rodar a replicação
+        // Verificacao se o simulador terminou de rodar a replicaÃ§Ã£o
         while (!fila.estaVazia() || !arquivosEnviados) {
           Thread.sleep(10);
         }
@@ -117,13 +117,15 @@ public class Simulador {
       public void run() {
         for (Usuario usuario : usuarios) {
           ArrayList<Arquivo> arquivos = usuario.enviaArquivos();
+          usuario.setTempoEnvio(relogio.getTempoAtual());
+          
           for (Arquivo arquivo : arquivos) {
             fila.adiciona(arquivo);
           }
           int tempo = ga.getAleatorio(10) * multiplicador;
           imprime(usuario.toString());
           imprime("Esperando proximo usuario...");
-          // Espera tempo random (até 10 unidades de tempo) ate o proximo pacote de outro
+          // Espera tempo random (atÃ© 10 unidades de tempo) ate o proximo pacote de outro
           // user
           try {
             Thread.sleep(tempo);
