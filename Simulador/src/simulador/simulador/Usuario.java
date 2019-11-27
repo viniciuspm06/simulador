@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 public class Usuario {
 
+  private int tempoEnvio;
+  private int tempoTerminoExecucao;
   private int totalArquivosEnviados;
   private int totalTempoServico;
   private int totalTempoEspera;
   private int totalTamanhoArquivo;
   private GeradorAleatorio ga;
   private String nome;
+  private int qtdArquivoProcessamento;
 
   Usuario(String nome, GeradorAleatorio ga) {
     setNome(nome);
@@ -34,6 +37,7 @@ public class Usuario {
 
   public void setTotalArquivosEnviados(int totalArquivosEnviados) {
     this.totalArquivosEnviados = totalArquivosEnviados;
+    this.qtdArquivoProcessamento = totalArquivosEnviados;
   }
 
   public int getTotalTempoServico() {
@@ -47,6 +51,14 @@ public class Usuario {
   public int getTotalTempoEspera() {
     return totalTempoEspera;
   }
+  
+  public int getTempoEnvio() {
+	return tempoEnvio;
+  }
+
+  public void setTempoEnvio(int tempoEnvio) {
+	this.tempoEnvio = tempoEnvio;
+  }
 
   public ArrayList<Arquivo> enviaArquivos() {
     ArrayList<Arquivo> arquivos = Arquivo.gerarArquivosUpload(ga.getQtdArquivoAleatorio(), ga, this);
@@ -58,6 +70,15 @@ public class Usuario {
     totalTempoServico += arquivo.getTempoServico();
     totalTamanhoArquivo += arquivo.getNumLinhas();
     totalTempoEspera += arquivo.getTempoEspera();
+    qtdArquivoProcessamento--;
+    
+    if(qtdArquivoProcessamento == 0) {
+    	tempoTerminoExecucao = Simulador.relogio.getTempoAtual();
+    }
+  }
+  
+  public int calcularTempoEsperaUsuario() {
+	  return tempoTerminoExecucao - tempoEnvio;
   }
 
   @Override
@@ -66,7 +87,7 @@ public class Usuario {
         + Relatorio.formatarPosicoes(Integer.toString(totalArquivosEnviados)) + "|"
         + Relatorio.formatarPosicoes(Integer.toString(totalTempoServico)) + "|"
         + Relatorio.formatarPosicoes(Integer.toString(totalTamanhoArquivo)) + "|"
-        + Relatorio.formatarPosicoes(Integer.toString(totalTempoEspera)) + '|';
+        + Relatorio.formatarPosicoes(Integer.toString(calcularTempoEsperaUsuario())) + '|';
   }
 
 }
